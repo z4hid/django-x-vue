@@ -61,3 +61,35 @@ class Tag(models.Model):
         return self.name
     
 
+class Post(models.Model):
+    title = models.CharField(max_length=250)
+    slug = models.SlugField()
+    content = models.TextField()
+    featured_image = models.ImageField(
+        upload_to='posts/featured_images/%Y/%m/%d/')
+    is_published = models.BooleanField(default=False)
+    is_featured = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True)
+
+    # Each post can recieve likes from multiple users and each users can like multiple posts
+    likes = models.ManyToManyField(User, related_name='post_likes')
+
+    # Each post belong to one user one category
+    category = models.ForeignKey(Category, 
+                                 on_delete=models.SET_NULL,
+                                 null=True)
+    # Each post can have multiple tags and each tag can be used in multiple posts
+    tags = models.ManyToManyField(Tag)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+
+    class Meta:
+        verbose_name = 'post'
+        verbose_name_plural = '5. Posts'
+
+    def __str__(self):
+        return self.title
+    
+    def get_number_of_likes(self):
+        return self.likes.count()
+    
