@@ -48,3 +48,16 @@ class Category(models.Model):
         return self.name
     
 
+class Tag(models.Model):
+    name = models.CharField(max_length=200)
+    slug = models.SlugField()
+    description = models.TextField()
+
+    class Meta:
+        verbose_name = 'tag'
+        verbose_name_plural = '4. Tags'
+
+    def __str__(self):
+        return self.name
+    
+
