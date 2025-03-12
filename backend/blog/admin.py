@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Site, User, Category, Tag
+from .models import Site, User, Category, Tag, Post, Comment
 
 # Register our models 
 class UserAdmin(admin.ModelAdmin):
@@ -23,3 +23,9 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ('_str_', 'is_approved', 'created_at')
 
 
+admin.site.register(Site)
+admin.site.register(User, UserAdmin)
+admin.site.register(Category, CategoryAdmin)
+admin.site.register(Tag, TagAdmin)
+admin.site.register(Post, PostAdmin)
+admin.site.register(Comment, CommentAdmin)
