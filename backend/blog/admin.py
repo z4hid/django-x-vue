@@ -19,3 +19,7 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ('title', 'is_published', 'is_featured', 'created_at')
 
 
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('_str_', 'is_approved', 'created_at')
+
+
