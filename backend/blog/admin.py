@@ -20,7 +20,7 @@ class PostAdmin(admin.ModelAdmin):
 
 
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('_str_', 'is_approved', 'created_at')
+    list_display = ('__str__', 'is_approved', 'created_at') 
 
 
 admin.site.register(Site)
